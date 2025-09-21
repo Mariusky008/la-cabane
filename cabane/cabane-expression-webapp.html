@@ -1,0 +1,2495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cabane d'Expression - Solution innovante pour les mairies</title>
+    <meta name="description" content="La Cabane d'Expression pour les mairies : un point d'écoute citoyen pour recueillir les avis, orienter vers les services appropriés et améliorer la gestion des demandes municipales.">
+    <meta name="keywords" content="mairie, services publics, écoute citoyenne, gestion administrative, innovation municipale, isolement, aide sociale">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fef7ed 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #1e40af;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #1e40af 0%, #dc2626 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 0;
+            background: linear-gradient(135deg, #dbeafe 0%, #fef7ed 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%231e40af" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-text-content {
+            text-align: left;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #fef3c7 0%, #fee2e2 100%);
+            color: #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(220, 38, 38, 0.1);
+            animation: badgePulse 2s infinite;
+        }
+        
+        @keyframes badgePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #1e40af 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero-description {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            padding-top: 0.25rem;
+        }
+        
+        .feature-item strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-item span {
+            line-height: 1.6;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-button-secondary {
+            display: inline-flex;
+            align-items: center;
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button-secondary:hover {
+            transform: translateX(5px);
+        }
+
+        /* Section À qui ce service s'adresse */
+        .target-audience {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+        }
+
+        .target-audience-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .target-audience-header h2 {
+            font-size: 2.5rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .target-audience-header p {
+            font-size: 1.2rem;
+            color: #4b5563;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .audience-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .audience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .audience-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            color: #1e40af;
+            transition: transform 0.3s ease;
+        }
+        
+        .audience-card:hover .audience-icon {
+            transform: scale(1.1);
+        }
+
+        .audience-card h3 {
+            font-size: 1.5rem;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .audience-examples {
+            font-size: 0.9rem;
+            color: #6b7280;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(30, 64, 175, 0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        
+        .hero-image-container {
+            position: relative;
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+            padding: 2rem;
+        }
+        
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .hero-image-badge {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            animation: badgeFloat 4s ease-in-out infinite;
+        }
+        
+        .badge-icon {
+            font-size: 2rem;
+        }
+        
+        .badge-text {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #1e293b;
+            line-height: 1.3;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        @keyframes badgeFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .hero-wave {
+            position: relative;
+            width: 100%;
+            margin-top: -1px;
+        }
+        
+        .hero-wave svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            
+            .hero-text-content {
+                text-align: center;
+            }
+            
+            .feature-item {
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                justify-content: center;
+            }
+            
+            .hero-image-container {
+                order: -1;
+            }
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        /* Fonctionnement Section */
+        .fonctionnement-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .fonctionnement-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e40af, #dc2626);
+            border-radius: 2px;
+        }
+
+        .fonctionnement-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .metric {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e40af, #dc2626);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .metric:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .metric:hover::before {
+            opacity: 1;
+        }
+
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e40af, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .metric-label {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            max-width: 1000px;
+            margin: 6rem auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, #1e40af, #dc2626);
+            opacity: 0.2;
+        }
+
+        .timeline-step {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6rem;
+            opacity: 0.7;
+            transition: all 0.5s ease;
+        }
+
+        .timeline-step.active {
+            opacity: 1;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-step:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-icon {
+            width: 4rem;
+            height: 4rem;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-icon .material-icons {
+            font-size: 2rem;
+            color: #1e40af;
+        }
+
+        .timeline-content {
+            width: calc(50% - 5rem);
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg) translateY(-50%);
+        }
+
+        .timeline-step:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+
+        .timeline-step:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-content h3 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .timeline-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .timeline-features li {
+            color: #334155;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e40af, #dc2626);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .feature-card h4 {
+            color: #1e293b;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .fonctionnement-metrics {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-step {
+                flex-direction: row !important;
+                margin-bottom: 3rem;
+            }
+
+            .timeline-icon {
+                margin-left: 0;
+            }
+
+            .timeline-content {
+                width: calc(100% - 6rem);
+                margin-left: 2rem;
+            }
+
+            .timeline-content::before {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .step-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af, #dc2626);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        /* Benefits Section */
+        .benefits-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .benefits-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #1e40af, #dc2626);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .metric-label {
+            color: #4b5563;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-bar {
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: var(--progress);
+            background: linear-gradient(90deg, #1e40af, #dc2626);
+            border-radius: 2px;
+            animation: progressBar 1.5s ease-out;
+        }
+        
+        @keyframes progressBar {
+            from { width: 0; }
+            to { width: var(--progress); }
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e40af, #dc2626);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+        
+        .highlight-card {
+            border: 2px solid #1e40af;
+            transform: scale(1.05);
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+        
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1e40af, #dc2626);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .benefit-content {
+            flex-grow: 1;
+        }
+        
+        .benefit-card h3 {
+            color: #1e293b;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .benefit-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+        
+        .benefit-features li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #4b5563;
+        }
+        
+        .benefit-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #1e40af;
+            font-weight: bold;
+        }
+        
+        .benefit-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .benefit-tag {
+            background: #f1f5f9;
+            color: #1e40af;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .benefit-more {
+            background: none;
+            border: none;
+            color: #1e40af;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .benefit-more:hover {
+            transform: translateX(5px);
+        }
+        
+        @media (max-width: 768px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .highlight-card {
+                transform: none;
+            }
+            
+            .highlight-card:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Current Problems Section */
+        .current-problems-section {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-solution-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .problem-solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .problem-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .problem-description {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .solution {
+            background: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 1rem 1.5rem;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .solution-icon {
+            color: #2563eb;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .solution p {
+            color: #1e40af;
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        /* Problems Section */
+        .problems-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fee2e2 100%);
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .problem-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #ef4444;
+        }
+        
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding-bottom: 6rem;
+        }
+
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-tab {
+            background: none;
+            border: 2px solid #1e40af;
+            color: #1e40af;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tab.active {
+            background: #1e40af;
+            color: white;
+        }
+
+        .pricing-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 1;
+        }
+
+        .pricing-badge.starter {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: white;
+        }
+
+        .pricing-badge.popular {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+        }
+
+        .pricing-badge.enterprise {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1.05);
+            border: 3px solid #1e40af;
+            z-index: 2;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem;
+            color: #1e293b;
+        }
+        
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-period {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .plan-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .plan-stats .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .plan-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .plan-features li.feature-highlight {
+            color: #1e293b;
+            font-weight: 600;
+        }
+        
+        .plan-features li:before {
+            content: '✓';
+            color: #059669;
+            font-weight: bold;
+            margin-right: 0.75rem;
+        }
+
+        /* Pricing Table Styles */
+        .pricing-table-container {
+            margin-top: 3rem;
+            overflow-x: auto;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 1.25rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pricing-table th:first-child,
+        .pricing-table td:first-child {
+            text-align: left;
+            padding-left: 2rem;
+        }
+
+        .table-plan-header {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .table-plan-header.popular {
+            background: linear-gradient(to bottom, rgba(30, 64, 175, 0.1), transparent);
+        }
+
+        .feature-category {
+            background: #f8fafc;
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .check {
+            color: #059669;
+            font-weight: bold;
+        }
+
+        .cross {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .pricing-card.popular {
+                transform: scale(1.02);
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-table th,
+            .pricing-table td {
+                padding: 1rem;
+            }
+
+            .pricing-table th:first-child,
+            .pricing-table td:first-child {
+                padding-left: 1.5rem;
+            }
+
+            .plan-price {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .pricing-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-tab {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .pricing-card {
+                margin: 0 1rem;
+            }
+
+            .pricing-card.popular {
+                transform: none;
+            }
+
+            .pricing-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-card.highlight {
+            border: 2px solid #1e40af;
+            position: relative;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-avatar {
+            position: relative;
+            margin-right: 1rem;
+        }
+
+        .avatar-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .avatar-badge {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-author h3 {
+            margin: 0;
+            color: #1e293b;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .testimonial-author p {
+            color: #64748b;
+            margin: 0.25rem 0;
+        }
+
+        .city-size {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        /* Case Studies */
+        .case-studies {
+            margin-top: 4rem;
+        }
+
+        .case-studies h3 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1e293b;
+            margin-bottom: 2rem;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-card h4 {
+            color: #1e293b;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .case-study-card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #475569;
+        }
+
+        .case-study-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        .case-link {
+            color: #1e40af;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+
+        .case-link:hover {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 1024px) {
+            .testimonials-grid,
+            .case-studies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid,
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Final CTA Section */
+        .final-cta {
+            background: linear-gradient(135deg, #1e40af 0%, #dc2626 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button-large {
+            background: white;
+            color: #1e40af;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-button-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #334155;
+            padding-top: 1rem;
+            color: #94a3b8;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .steps-grid, .benefits-grid, .problems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card:nth-child(2) {
+                transform: none;
+            }
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">🏛️ La Cabane d'Expression</a>
+            <ul class="nav-links">
+                <li><a href="#fonctionnement">Fonctionnement</a></li>
+                <li><a href="#benefices">Bénéfices</a></li>
+                <li><a href="#problemes">Types de demandes</a></li>
+                <li><a href="#formules">Formules</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button">Prendre RV</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text-content fade-in">
+                    
+                    <h1>Révolutionnez l'accueil citoyen de votre mairie</h1>
+                    <p class="hero-description">La Cabane d'Expression est une solution innovante qui transforme la relation d'une mairie
+                        avec ses administrés en leur facilitant l’expression de leurs besoins</p>
+                    <ul class="hero-features">
+                        <li class="feature-item">
+                           
+                            <span>
+                                <strong>Exprimer un besoin</strong>
+                                • Signaler un problème (voirie, éclaireage, securité, propreté)<br>
+                                • Exprimer librement une préoccupation ou une
+                                demande (isolement, problème professionnel, personnel, administratif, psychologique...).<br>
+                                • Propositions d'améliorations
+                            </span>
+                        </li>
+                        <li class="feature-item">
+                      
+                            <span>
+                                <strong>Accéder aux infos de la mairie</strong>
+                                • Projets en cours<br>
+                                • Événements à venir<br>
+                                • Vidéos du maire et des élus
+                            </span>
+                        </li>
+                        <li class="feature-item">
+                         
+                            <span>
+                                <strong>Communication directe</strong>
+                                • Chat avec un agent pour un renseignement<br>
+                                • Boîte vocale pour messages audio
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="hero-cta">
+                        <a href="#contact" class="cta-button cta-button-large">Prendre RV</a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="hero-image-container fade-in">
+                    <div class="hero-image-wrapper">
+                        <img src="cabane.webp" alt="La Cabane d'Expression pour mairies" class="hero-image">
+                        <div class="hero-image-badge">
+                            <span class="badge-icon">🏛️</span>
+                            <span class="badge-text">Solution certifiée<br>collectivités</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0L48 8C96 16 192 32 288 37.3C384 42.7 480 37.3 576 32C672 26.7 768 21.3 864 26.7C960 32 1056 48 1152 53.3C1248 58.7 1344 53.3 1392 50.7L1440 48V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0V0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Section À qui ce service s'adresse -->
+    <section class="target-audience">
+        <div class="container">
+            <div class="target-audience-header fade-in">
+                <h2>À qui ce service s'adresse ?</h2>
+                <p>La Cabane d'Expression est conçue pour tous les administrés de votre ville, quels que soient leurs besoins ou leurs situations.</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card fade-in">
+                    <div class="audience-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Familles</h3>
+                    <p>Pour toutes les démarches liées à la vie familiale et l'accompagnement au quotidien.</p>
+                    <div class="audience-examples">
+                        Inscription scolaire • Activités périscolaires • Aide sociale
+                    </div>
+                </div>
+
+                <div class="audience-card fade-in">
+                    <div class="audience-icon">👴</div>
+                    <h3>Seniors</h3>
+                    <p>Un accompagnement adapté pour les seniors et leurs besoins spécifiques.</p>
+                    <div class="audience-examples">
+                        Services à domicile • Activités seniors • Aide administrative
+                    </div>
+                </div>
+
+                <div class="audience-card fade-in">
+                    <div class="audience-icon">🏃</div>
+                    <h3>Jeunes actifs</h3>
+                    <p>Des solutions rapides et efficaces pour les citoyens pressés.</p>
+                    <div class="audience-examples">
+                        Démarches en ligne • Services express • Rendez-vous flexibles
+                    </div>
+                </div>
+
+                <div class="audience-card fade-in">
+                    <div class="audience-icon">🏠</div>
+                    <h3>Nouveaux arrivants</h3>
+                    <p>Un accueil personnalisé pour bien s'intégrer dans la commune.</p>
+                    <div class="audience-examples">
+                        Guide pratique • Services municipaux • Vie locale
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fonctionnement Section -->
+    <section id="fonctionnement" class="section">
+        <div class="container">
+            <div class="fonctionnement-header fade-in">
+                <h2 class="section-title">Comment ça marche ?</h2>
+                <p class="section-subtitle">Un processus simple et efficace pour vos citoyens et vos services</p>
+            </div>
+            
+            <div class="timeline-container fade-in">
+                <div class="timeline">
+                    <div class="timeline-step active">
+                        <div class="timeline-icon">
+                            <span class="material-icons">door_front</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>1. Le citoyen entre dans la cabane</h3>
+                            <p>Vos administrés accèdent à un espace privé et confidentiel, disponible 24h/24, pour s'exprimer librement sur leurs préoccupations ou demandes (isolement, problème professionnel, personnel, administratif, psychologique...).</p>
+                            <ul class="timeline-features">
+                                <li>✓ Espace privé et confidentiel</li>
+                                <li>✓ Disponible 24h/24</li>
+                                <li>✓ Expression libre des besoins</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <span class="material-icons">auto_awesome</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>2. Expression et orientation automatique</h3>
+                            <p>Le système identifie le type de demande et traite la demande en fonction de 
+                                son type (administrative, sociale, psychologique, etc.). </br></br><strong>3 actions sont alors possibles :</strong></p>
+                            <ul class="timeline-features">
+                                <li>✓ Orientation automatique vers le service compétent</li>
+                                <li>✓ Dépôt de la demande pour traitement ultérieur</li>
+                                <li>✓ Prise de rendez-vous</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-step">
+                        <div class="timeline-icon">
+                            <span class="material-icons">support_agent</span>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>3. Traitement par les services</h3>
+                            <p>Vos équipes reçoivent les demandes pré-triées et peuvent traiter les dossiers plus efficacement, avec un suivi personnalisé des citoyens.</p>
+                            <ul class="timeline-features">
+                                <li>✓ Demandes pré-triées</li>
+                                <li>✓ Traitement efficace</li>
+                                <li>✓ Suivi personnalisé</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Problèmes actuels Section -->
+    <section class="section current-problems-section">
+        <div class="container">
+            <h2 class="section-title fade-in">🚨 Problèmes actuels rencontrés par les mairies</h2>
+            
+            <div class="problem-solution-card fade-in">
+                <h3 class="problem-title">Trop de sollicitations dispersées</h3>
+                <p class="problem-description">Appels, mails, rendez-vous, messages Facebook → difficile de centraliser les demandes.</p>
+                <div class="solution">
+                    <span class="solution-icon">👉</span>
+                    <p>La cabane sert de point unique de recueil des besoins et préoccupations, organisé et orienté automatiquement.</p>
+                </div>
+            </div>
+
+            <div class="problem-solution-card fade-in">
+                <h3 class="problem-title">Agents surchargés par des demandes récurrentes ou hors-sujet</h3>
+                <p class="problem-description">Les secrétariats passent beaucoup de temps à répondre à des questions simples ou à orienter vers le bon service.</p>
+                <div class="solution">
+                    <span class="solution-icon">👉</span>
+                    <p>La cabane fait le pré-tri et oriente directement vers le bon service → gain de temps pour les équipes.</p>
+                </div>
+            </div>
+
+            <div class="problem-solution-card fade-in">
+                <h3 class="problem-title">Manque de lien de confiance avec les habitants</h3>
+                <p class="problem-description">Certains citoyens n'osent pas exprimer leurs problèmes (isolement, difficultés psychologiques, etc.).</p>
+                <div class="solution">
+                    <span class="solution-icon">👉</span>
+                    <p>La cabane offre un espace confidentiel et anonyme → les habitants s'expriment plus librement.</p>
+                </div>
+            </div>
+
+            <div class="problem-solution-card fade-in">
+                <h3 class="problem-title">Difficulté à mesurer les besoins réels des habitants</h3>
+                <p class="problem-description">Les élus manquent de données fiables sur les préoccupations locales.</p>
+                <div class="solution">
+                    <span class="solution-icon">👉</span>
+                    <p>La cabane fournit des rapports clairs et synthétiques → meilleure compréhension des attentes citoyennes.</p>
+                </div>
+            </div>
+
+            <div class="problem-solution-card fade-in">
+                <h3 class="problem-title">Image de la mairie parfois perçue comme distante ou bureaucratique</h3>
+                <p class="problem-description">Les habitants veulent une mairie plus proche, plus moderne et accessible.</p>
+                <div class="solution">
+                    <span class="solution-icon">👉</span>
+                    <p>La cabane incarne une mairie innovante et humaine, sans remplacer le contact humain des agents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Types de problèmes Section -->
+    <section id="problemes" class="section problems-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Types de demandes prises en charge</h2>
+            <p class="section-subtitle fade-in">La Cabane identifie et oriente tous types de préoccupations citoyennes</p>
+            
+            <div class="problems-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💔</div>
+                    <h3>Isolement social</h3>
+                    <p>→ Orientation vers les services sociaux et associations d'aide</p>
+                </div>
+                
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Problèmes familiaux</h3>
+                    <p>→ Redirection vers médiation familiale et aide sociale</p>
+                </div>
+                
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🧠</div>
+                    <h3>Difficultés psychologiques</h3>
+                    <p>→ Mise en relation avec services de santé mentale</p>
+                </div>
+                
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">💼</div>
+                    <h3>Problèmes professionnels</h3>
+                    <p>→ Orientation Pôle emploi et services d'insertion</p>
+                </div>
+                
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🏢</div>
+                    <h3>Demandes administratives</h3>
+                    <p>→ Pré-traitement et orientation service municipal</p>
+                </div>
+                
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🗣️</div>
+                    <h3>Avis et suggestions</h3>
+                    <p>→ Remontée directe aux élus et services concernés</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bénéfices Section -->
+    <section id="benefices" class="section benefits-section">
+        <div class="container">
+            <div class="benefits-header">
+                <h2 class="section-title fade-in">Transformez votre service public</h2>
+                <p class="section-subtitle fade-in">Des résultats concrets et mesurables pour votre mairie</p>
+                
+                <div class="benefits-metrics fade-in">
+                    <div class="metric-card">
+                        <div class="metric-value">-40%</div>
+                        <div class="metric-label">Temps de traitement administratif</div>
+                        <div class="metric-bar" style="--progress: 60%"></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">+85%</div>
+                        <div class="metric-label">Satisfaction des citoyens</div>
+                        <div class="metric-bar" style="--progress: 85%"></div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">24/7</div>
+                        <div class="metric-label">Disponibilité des services</div>
+                        <div class="metric-bar" style="--progress: 100%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in" data-category="efficacite">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-content">
+                        <h3>Efficacité administrative</h3>
+                        <p>Réduction drastique du temps de traitement grâce au pré-tri automatique et à l'orientation intelligente des demandes.</p>
+                        <ul class="benefit-features">
+                            <li>Tri automatique des demandes</li>
+                            <li>Orientation instantanée</li>
+                            <li>-40% de charge administrative</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Productivité</span>
+                        
+                    </div>
+                </div>
+                
+                <div class="benefit-card fade-in" data-category="gestion">
+                    <div class="benefit-icon">📊</div>
+                    <div class="benefit-content">
+                        <h3>Gestion optimisée</h3>
+                        <p>Plateforme centralisée avec tableaux de bord en temps réel pour un suivi précis des demandes citoyennes.</p>
+                        <ul class="benefit-features">
+                            <li>Dashboard temps réel</li>
+                            <li>Statistiques détaillées</li>
+                            <li>Suivi des performances</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Analytics</span>
+                        
+                    </div>
+                </div>
+                
+                <div class="benefit-card fade-in highlight-card" data-category="innovation">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h3>Guichet unique intelligent</h3>
+                        <p>Un point d'accueil moderne qui centralise et traite automatiquement toutes les demandes citoyennes.</p>
+                        <ul class="benefit-features">
+                            <li>Disponible 24h/24</li>
+                            <li>Interface intuitive</li>
+                            <li>Multi-services intégrés</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Innovation</span>
+                        
+                    </div>
+                </div>
+                
+                <div class="benefit-card fade-in" data-category="qualite">
+                    <div class="benefit-icon">📈</div>
+                    <div class="benefit-content">
+                        <h3>Amélioration continue</h3>
+                        <p>Système d'analyse et de feedback pour optimiser en permanence la qualité des services municipaux.</p>
+                        <ul class="benefit-features">
+                            <li>Feedback citoyen</li>
+                            <li>Analyses prédictives</li>
+                            <li>Recommandations d'amélioration</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Qualité</span>
+                       
+                    </div>
+                </div>
+                
+                <div class="benefit-card fade-in" data-category="social">
+                    <div class="benefit-icon">🤝</div>
+                    <div class="benefit-content">
+                        <h3>Proximité citoyenne</h3>
+                        <p>Renforcez le lien social et l'engagement citoyen grâce à un point de contact accessible et bienveillant.</p>
+                        <ul class="benefit-features">
+                            <li>Accueil personnalisé</li>
+                            <li>Suivi individualisé</li>
+                            <li>Engagement communautaire</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Social</span>
+                       
+                    </div>
+                </div>
+                
+                <div class="benefit-card fade-in" data-category="innovation">
+                    <div class="benefit-icon">🏆</div>
+                    <div class="benefit-content">
+                        <h3>Leadership municipal</h3>
+                        <p>Positionnez votre commune à l'avant-garde de l'innovation dans les services publics.</p>
+                        <ul class="benefit-features">
+                            <li>Solution primée</li>
+                            <li>Visibilité médiatique</li>
+                            <li>Reconnaissance nationale</li>
+                        </ul>
+                    </div>
+                    <div class="benefit-footer">
+                        <span class="benefit-tag">Prestige</span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="formules" class="section pricing-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Nos Formules pour Mairies</h2>
+            <p class="section-subtitle fade-in">Choisissez la solution adaptée à la taille de votre commune</p>
+            
+            <div class="pricing-tabs fade-in">
+                <button class="pricing-tab active" onclick="switchPricingView('grid')">Vue Cartes</button>
+                <button class="pricing-tab" onclick="switchPricingView('table')">Comparaison Détaillée</button>
+            </div>
+            
+            <div id="pricing-grid-view" class="pricing-grid">
+                <div class="pricing-card fade-in">
+                    <div class="pricing-badge starter">STARTER</div>
+                    <h3 class="plan-name">Petite Commune</h3>
+                    <div class="plan-price">800€</div>
+                    <div class="plan-period">par mois</div>
+                    <div class="plan-stats">
+                        
+                        <div class="stat">
+                            <span class="stat-number">97%</span>
+                            <span class="stat-label">satisfaction</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li class="feature-highlight">1 Cabane d'Expression</li>
+                        <li>Orientation automatique</li>
+                        <li>Support par email</li>
+                        <li>Rapports mensuels</li>
+                        <li>Jusqu'à 5 000 habitants</li>
+                     
+                    </ul>
+                    <a href="#contact" class="cta-button">Choisir cette formule</a>
+                </div>
+                
+                <div class="pricing-card popular fade-in">
+                    <div class="pricing-badge popular">PLUS POPULAIRE</div>
+                    <h3 class="plan-name">Commune Moyenne</h3>
+                    <div class="plan-price">1200€</div>
+                    <div class="plan-period">par mois</div>
+                    <div class="plan-stats">
+                        
+                        <div class="stat">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">satisfaction</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li class="feature-highlight">1 Cabane d'Expression</li>
+                        <li class="feature-highlight">Orientation multi-services</li>
+                        <li>Support prioritaire</li>
+                        <li>Rapports hebdomadaires</li>
+                        <li>Analytics et statistiques</li>
+                        <li>Jusqu'à 30 000 habitants</li>
+                        <li>Interface élus/services</li>
+                      
+                    </ul>
+                    <a href="#contact" class="cta-button">Choisir cette formule</a>
+                </div>
+                
+                <div class="pricing-card enterprise fade-in">
+                    <div class="pricing-badge enterprise">ENTERPRISE</div>
+                    <h3 class="plan-name">Grande Ville</h3>
+                    <div class="plan-price">Sur devis</div>
+                    <div class="plan-period">solution sur mesure</div>
+                    <div class="plan-stats">
+                        
+                        <div class="stat">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">satisfaction</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li class="feature-highlight">Cabanes multiples</li>
+                        <li class="feature-highlight">Intégration SI existant</li>
+                        <li class="feature-highlight">Support dédié 24/7</li>
+                        <li>Rapports en temps réel</li>
+                        <li>Dashboard élus personnalisé</li>
+                        <li>Habitants illimités</li>
+                        <li>API sur mesure</li>
+                        <li>Accompagnement complet</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Nous contacter</a>
+                </div>
+            </div>
+
+            <div id="pricing-table-view" class="pricing-table-container" style="display: none;">
+                <table class="pricing-table fade-in">
+                    <thead>
+                        <tr>
+                            <th>Fonctionnalités</th>
+                            <th>
+                                <div class="table-plan-header">
+                                    <span class="pricing-badge starter">STARTER</span>
+                                    <h3>Petite Commune</h3>
+                                    <div class="plan-price">800€</div>
+                                    <div class="plan-period">par mois</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-plan-header popular">
+                                    <span class="pricing-badge popular">PLUS POPULAIRE</span>
+                                    <h3>Commune Moyenne</h3>
+                                    <div class="plan-price">1200€</div>
+                                    <div class="plan-period">par mois</div>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="table-plan-header">
+                                    <span class="pricing-badge enterprise">ENTERPRISE</span>
+                                    <h3>Grande Ville</h3>
+                                    <div class="plan-price">Sur devis</div>
+                                    <div class="plan-period">solution sur mesure</div>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-category" colspan="4">Infrastructure</td>
+                        </tr>
+                        <tr>
+                            <td>Nombre de Cabanes</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>Illimité</td>
+                        </tr>
+                        <tr>
+                            <td>Capacité habitants</td>
+                            <td>Jusqu'à 5 000</td>
+                            <td>Jusqu'à 30 000</td>
+                            <td>Illimité</td>
+                        </tr>
+                        <tr>
+                            <td>Disponibilité</td>
+                            <td>99.9%</td>
+                            <td>99.95%</td>
+                            <td>99.99%</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-category" colspan="4">Support & Formation</td>
+                        </tr>
+                        <tr>
+                            <td>Support technique</td>
+                            <td>Email</td>
+                            <td>Prioritaire</td>
+                            <td>24/7 Dédié</td>
+                        </tr>
+                        <tr>
+                            <td>Formation initiale</td>
+                            <td>2 jours</td>
+                            <td>4 jours</td>
+                            <td>Sur mesure</td>
+                        </tr>
+                        <tr>
+                            <td>Accompagnement</td>
+                            <td>Standard</td>
+                            <td>Personnalisé</td>
+                            <td>Complet</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-category" colspan="4">Fonctionnalités</td>
+                        </tr>
+                        <tr>
+                            <td>Orientation automatique</td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Multi-services</td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>Analytics avancés</td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>API personnalisée</td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="cross">×</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-category" colspan="4">Rapports & Analytics</td>
+                        </tr>
+                        <tr>
+                            <td>Fréquence rapports</td>
+                            <td>Mensuel</td>
+                            <td>Hebdomadaire</td>
+                            <td>Temps réel</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboard personnalisé</td>
+                            <td>Basique</td>
+                            <td>Avancé</td>
+                            <td>Sur mesure</td>
+                        </tr>
+                        <tr>
+                            <td>Export données</td>
+                            <td>CSV</td>
+                            <td>CSV, Excel</td>
+                            <td>Tous formats</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td></td>
+                            <td><a href="#contact" class="cta-button">Choisir</a></td>
+                            <td><a href="#contact" class="cta-button">Choisir</a></td>
+                            <td><a href="#contact" class="cta-button">Contact</a></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Final CTA Section -->
+    <section class="section final-cta">
+        <div class="container">
+            <h2 class="fade-in">Prêt à moderniser vos services municipaux ?</h2>
+            <p class="quote fade-in">"La Cabane d'Expression : le point de repère bienveillant dont vos citoyens ont besoin, la solution efficace que vos services attendent."</p>
+            <a href="#contact" class="cta-button-large fade-in">Contactez-nous pour installer votre cabane</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📧 jdecapsulemavie@gmail.fr</p>
+                    <p>📞 07 68 23 33 47</p>
+                    <p>📍 Dax, France</p>
+                    <p>🏛️ Solutions dédiées aux collectivités</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="#fonctionnement">Fonctionnement</a></p>
+                    <p><a href="#benefices">Bénéfices mairies</a></p>
+                    <p><a href="#problemes">Types de demandes</a></p>
+                    <p><a href="#formules">Nos formules</a></p>
+                </div>
+                
+                
+                
+                <div class="footer-section">
+                    <h3>Légal</h3>
+                    <p><a href="#">À propos</a></p>
+                    <p><a href="#">Mentions légales</a></p>
+                    <p><a href="#">RGPD</a></p>
+                    <p><a href="#">Conditions générales</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 La Cabane d'Expression - Solutions pour collectivités. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling and fade-in animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for fade-in animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Form handling for CTA buttons
+            document.querySelectorAll('.cta-button, .cta-button-large').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#contact') {
+                        e.preventDefault();
+                        // Scroll to footer contact section
+                        document.querySelector('#contact').scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        // Optional: Show contact modal or form
+                        alert('Merci pour votre intérêt ! Notre équipe spécialisée collectivités vous contactera sous 24h pour organiser une présentation personnalisée adaptée à votre commune.');
+                    }
+                });
+            });
+            
+            // Add some interactivity to pricing cards
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = this.classList.contains('popular') ? 'translateY(-10px) scale(1.05)' : 'translateY(-10px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = this.classList.contains('popular') ? 'scale(1.05)' : '';
+                });
+            });
+            
+            // Add interactivity to problem cards
+            document.querySelectorAll('.problem-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add a subtle animation when clicked
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+            
+            // Add counter animation for benefits
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            let delay = 0;
+            benefitCards.forEach(card => {
+                card.style.animationDelay = `${delay}s`;
+                delay += 0.1;
+            });
+
+            // Fonction pour afficher les détails des bénéfices
+            window.showBenefitDetails = function(button) {
+                const card = button.closest('.benefit-card');
+                const features = card.querySelector('.benefit-features');
+                
+                // Animation de la carte
+                card.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 200);
+                
+                // Effet de highlight sur les features
+                features.querySelectorAll('li').forEach((li, index) => {
+                    setTimeout(() => {
+                        li.style.transform = 'translateX(10px)';
+                        setTimeout(() => {
+                            li.style.transform = '';
+                        }, 300);
+                    }, index * 100);
+                });
+            };
+
+            // Animation des barres de progression au scroll
+            const metricsObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.metric-bar');
+                        bars.forEach(bar => {
+                            const progress = bar.style.getPropertyValue('--progress');
+                            bar.style.setProperty('--progress', '0%');
+                            setTimeout(() => {
+                                bar.style.setProperty('--progress', progress);
+                            }, 100);
+                        });
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            document.querySelectorAll('.benefits-metrics').forEach(el => metricsObserver.observe(el));
+
+            // Fonction pour changer la vue des prix
+            window.switchPricingView = function(view) {
+                const gridView = document.getElementById('pricing-grid-view');
+                const tableView = document.getElementById('pricing-table-view');
+                const tabs = document.querySelectorAll('.pricing-tab');
+                
+                // Mise à jour des tabs
+                tabs.forEach(tab => {
+                    tab.classList.remove('active');
+                    if (
+                        (view === 'grid' && tab.textContent.includes('Cartes')) ||
+                        (view === 'table' && tab.textContent.includes('Comparaison'))
+                    ) {
+                        tab.classList.add('active');
+                    }
+                });
+                
+                // Animation de transition
+                const fadeOut = (element) => {
+                    element.style.opacity = '0';
+                    setTimeout(() => {
+                        element.style.display = 'none';
+                        element.style.opacity = '1';
+                    }, 300);
+                };
+                
+                const fadeIn = (element) => {
+                    element.style.opacity = '0';
+                    element.style.display = null;
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                    }, 50);
+                };
+                
+                // Changement de vue avec animation
+                if (view === 'grid') {
+                    fadeOut(tableView);
+                    fadeIn(gridView);
+                } else {
+                    fadeOut(gridView);
+                    fadeIn(tableView);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
